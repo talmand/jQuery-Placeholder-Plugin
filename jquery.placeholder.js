@@ -2,13 +2,15 @@
     $(document).ready(function() {
     
         //http://stackoverflow.com/questions/3937818/jquery-how-to-test-is-the-browser-supports-the-native-placeholder-attribute
-        var placeholderSupport = (function(){ var i = document.createElement('input'); return 'placeholder' in i; })();
+        //var placeholderSupport = (function(){ var i = document.createElement('input'); return 'placeholder' in i; })();
+        //if (!placeholderSupport) {
         
         // if placeholder is supported then nothing happens
-        if (!placeholderSupport) {
+        // http://www.scriptiny.com/2012/08/html5-placeholder-fallback-using-jquery/?utm_source=html5weekly&utm_medium=email
+        if (!("placeholder" in document.createElement("input"))) {
             
 			// collect all elements with a placeholder attribute
-            var placeholders = $("[placeholder]");
+            var placeholders = $("input[placeholder], textarea[placeholder]");
             
             placeholders.each(function() {
 				// see if element has value, if so don't change
